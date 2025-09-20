@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=WindSong:wght@400;500&display=swap');
+@import 'tailwindcss';
+
+/* Dark mode disabled: removing custom dark variant */
+
+/* Global custom properties and utilities */
+:root {
+	--font-script: 'WindSong', cursive;
+}
+
+@keyframes spin {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+.animate-spin-slow {
+	animation: spin 120s linear infinite;
+}
+
+/* In-view utility: combine with Tailwind initial state classes
+   Example: class="opacity-0 translate-y-3 transition-all duration-500 ease-out"
+   When 'in-view' is added by the action, it will reveal. */
+.in-view {
+	opacity: 1 !important;
+	transform: translate3d(0, 0, 0) !important;
+}
+
+/* Respect reduced motion: disable transitions and transforms */
+@media (prefers-reduced-motion: reduce) {
+	.transition-all,
+	.transition,
+	.duration-300,
+	.duration-500 {
+		transition: none !important;
+	}
+	.translate-y-1,
+	.translate-y-2,
+	.translate-y-3,
+	.translate-y-4,
+	.translate-y-6,
+	.translate-y-8,
+	.translate-x-1,
+	.translate-x-2,
+	.translate-x-3 {
+		transform: none !important;
+	}
+}
