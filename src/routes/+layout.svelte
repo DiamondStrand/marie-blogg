@@ -58,6 +58,18 @@
 	});
 </script>
 
+<svelte:head>
+	<!-- Site-wide RSS feed discovery -->
+	<link
+		rel="alternate"
+		type="application/rss+xml"
+		title="Små steg med stora tankar – RSS"
+		href="/rss.xml"
+	/>
+	<!-- Default locale for Open Graph -->
+	<meta property="og:locale" content="sv_SE" />
+</svelte:head>
+
 <div class="app-root flex min-h-screen flex-col bg-white text-gray-900">
 	<Header />
 	<div>
