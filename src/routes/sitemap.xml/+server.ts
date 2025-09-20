@@ -17,14 +17,13 @@ function isoDate(d?: string | null): string | undefined {
 export const GET: RequestHandler = async ({ request }) => {
 	const origin = new URL(request.url).origin;
 
-	// Fetch up to 5000 most recent published documents for sitemap
-	const selectCols = 'id, slug, status, published_at, updated_at';
+	// Fetch up to 5000 most recent documents for sitemap
+	const selectCols = 'id, slug, status, updated_at';
 	let { data: docs, error } = await supabase
 		.from('documents')
 		.select(selectCols)
 		.eq('space_id', PRIVATE_SPACE_KEY)
-		.eq('status', 'published')
-		.order('published_at', { ascending: false })
+		.order('updated_at', { ascending: false })
 		.limit(5000);
 
 	// Lenient fallback in dev if nothing found
@@ -51,7 +50,7 @@ export const GET: RequestHandler = async ({ request }) => {
 
 	const postEntries = (docs ?? []).map((d) => {
 		const slugOrId = (d as any).slug || (d as any).id;
-		const last = isoDate((d as any).updated_at || (d as any).published_at);
+		const last = isoDate((d as any).updated_at || (d as any).updated_at);
 		return {
 			loc: `${origin}/${slugOrId}`,
 			changefreq: 'weekly',

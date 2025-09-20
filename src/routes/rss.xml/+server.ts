@@ -8,13 +8,12 @@ export const GET: RequestHandler = async ({ request }) => {
 	const siteDesc = 'En blogg för stillhet, känslor och reflektion.';
 	const siteUrl = origin;
 
-	const selectCols = 'id, title, slug, status, published_at, updated_at, content_html';
+	const selectCols = 'id, title, slug, status, updated_at, content_html';
 	let { data: docs, error } = await supabase
 		.from('documents')
 		.select(selectCols)
 		.eq('space_id', PRIVATE_SPACE_KEY)
-		.eq('status', 'published')
-		.order('published_at', { ascending: false })
+		.order('updated_at', { ascending: false })
 		.limit(50);
 
 	if ((error || !docs || docs.length === 0) && import.meta.env.DEV) {
@@ -30,7 +29,7 @@ export const GET: RequestHandler = async ({ request }) => {
 	const items = (docs ?? [])
 		.map((d: any) => {
 			const link = `${siteUrl}/${d.slug || d.id}`;
-			const pubDate = new Date(d.published_at || d.updated_at || Date.now()).toUTCString();
+			const pubDate = new Date(d.updated_at || d.updated_at || Date.now()).toUTCString();
 			const guid = d.id;
 			const title = escapeXml(d.title || 'Inlägg');
 			const description = escapeCdata((d.content_html as string | null) || '');
