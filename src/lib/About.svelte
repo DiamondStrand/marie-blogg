@@ -20,7 +20,7 @@
 	];
 </script>
 
-<section class="bg-gray-50 py-20">
+<section class="bg-gray-50 px-6 py-20 lg:px-0">
 	<div class="mx-auto max-w-6xl text-center">
 		<span class="mb-2 text-sm tracking-wide text-gray-500 uppercase">
 			Tre små tankespår – som kanske följer dig längre än du anar.

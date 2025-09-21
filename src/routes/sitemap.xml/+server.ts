@@ -18,13 +18,20 @@ export const GET: RequestHandler = async ({ request }) => {
 	const origin = new URL(request.url).origin;
 
 	// Fetch up to 5000 most recent documents for sitemap
-	const selectCols = 'id, slug, status, updated_at';
-	let { data: docs, error } = await supabase
+	const selectCols = 'id, slug, status, updated_at, published_at';
+	let query = supabase
 		.from('documents')
 		.select(selectCols)
 		.eq('space_id', PRIVATE_SPACE_KEY)
 		.order('updated_at', { ascending: false })
 		.limit(5000);
+
+	// In production, exclude non-published items to avoid indexing drafts
+	if (!import.meta.env.DEV) {
+		query = query.eq('status', 'published');
+	}
+
+	let { data: docs, error } = await query;
 
 	// Lenient fallback in dev if nothing found
 	if ((error || !docs || docs.length === 0) && import.meta.env.DEV) {
@@ -50,7 +57,7 @@ export const GET: RequestHandler = async ({ request }) => {
 
 	const postEntries = (docs ?? []).map((d) => {
 		const slugOrId = (d as any).slug || (d as any).id;
-		const last = isoDate((d as any).updated_at || (d as any).updated_at);
+		const last = isoDate((d as any).updated_at || (d as any).published_at);
 		return {
 			loc: `${origin}/${slugOrId}`,
 			changefreq: 'weekly',

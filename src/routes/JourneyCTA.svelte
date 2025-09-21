@@ -1,5 +1,5 @@
 <section class="mx-auto max-w-7xl py-16">
-	<div class="rounded bg-black px-8 py-12 text-center text-white">
+	<div class="bg-black px-8 py-12 text-center text-white md:rounded">
 		<p class="mb-3 text-xs tracking-widest text-white/70 uppercase">UPPTÄCK ORDENS KRAFT</p>
 		<h3 class="mx-auto mb-8 max-w-3xl font-serif text-2xl md:text-3xl">
 			Små steg av tankar, stora rum för känslor. Här får du stanna upp, reflektera och känna igen

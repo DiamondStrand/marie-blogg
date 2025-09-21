@@ -325,7 +325,13 @@
 		<title>{metaTitle}</title>
 		<meta name="description" content={metaDescription} />
 		<link rel="canonical" href={canonical} />
-		<meta name="robots" content="index,follow" />
+		{#if post.status && post.status !== 'published'}
+			<meta name="robots" content="noindex, nofollow" />
+		{:else if $page.url.searchParams.has('preview')}
+			<meta name="robots" content="noindex, nofollow" />
+		{:else}
+			<meta name="robots" content="index,follow" />
+		{/if}
 
 		<!-- Open Graph for articles -->
 		<meta property="og:type" content="article" />

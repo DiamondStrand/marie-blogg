@@ -2,8 +2,8 @@
 	let { title = 'Om bloggen /', heading = 'NÄR ORD FÅR VILA' } = $props();
 </script>
 
-<div class="mx-auto max-w-5xl -translate-y-20 md:-translate-y-28">
-	<div class="rounded-md bg-black/90 px-8 py-10 text-gray-200 shadow-lg">
+<div class="mx-auto max-w-5xl md:-translate-y-20 md:-translate-y-28">
+	<div class=" bg-black/90 px-8 py-10 text-gray-200 shadow-lg lg:rounded-md">
 		<div class="grid grid-cols-1 gap-6 md:grid-cols-3">
 			<div class="flex items-center">
 				<h3 class="font-serif text-3xl tracking-wider text-white md:col-span-1">{title}</h3>

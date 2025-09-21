@@ -3,7 +3,7 @@
 </script>
 
 <div class="z-10">
-	<div class="aspect-[21/6] w-full overflow-hidden">
+	<div class="aspect-video w-full overflow-hidden md:aspect-[21/6]">
 		<img class="z-10 h-full w-full object-cover" {src} {alt} />
 	</div>
 </div>

@@ -2,7 +2,7 @@
 	import { onMount } from 'svelte';
 	import Logo from '$lib/Logo.svelte';
 	import Icon from '@iconify/svelte';
-	import { page } from '$app/stores';
+	import { page } from '$app/state';
 
 	let open = $state(false);
 	let scrolled = $state(false);
@@ -53,9 +53,9 @@
 				{#if link.header}
 					<a
 						href={link.href}
-						aria-current={isActive(link.href, $page.url.pathname) ? 'page' : undefined}
+						aria-current={isActive(link.href, page.url.pathname) ? 'page' : undefined}
 						class={`group relative inline-flex items-center gap-2 rounded-full px-3 py-2 text-[15px] transition ${
-							isActive(link.href, $page.url.pathname)
+							isActive(link.href, page.url.pathname)
 								? 'bg-slate-900/5 text-slate-900'
 								: 'text-slate-700 hover:bg-slate-900/5 hover:text-slate-950'
 						}`}
@@ -129,23 +129,25 @@
 
 				<div class="grid gap-1">
 					{#each links as link}
-						<a
-							href={link.href}
-							aria-current={isActive(link.href, $page.url.pathname) ? 'page' : undefined}
-							onclick={closeMenu}
-							class={`flex items-center gap-3 rounded-xl px-3 py-3 text-[15px] font-medium ${
-								isActive(link.href, $page.url.pathname)
-									? 'bg-slate-900/5 text-slate-900'
-									: 'text-slate-800 hover:bg-slate-50'
-							}`}
-						>
-							<Icon icon={`heroicons:${link.icon}`} class="h-5 w-5 text-slate-400" />
-							<span>{link.label}</span>
-							<Icon
-								icon="heroicons:chevron-right-20-solid"
-								class="ml-auto h-5 w-5 text-slate-400"
-							/>
-						</a>
+						{#if link.header}
+							<a
+								href={link.href}
+								aria-current={isActive(link.href, page.url.pathname) ? 'page' : undefined}
+								onclick={closeMenu}
+								class={`flex items-center gap-3 rounded-xl px-3 py-3 text-[15px] font-medium ${
+									isActive(link.href, page.url.pathname)
+										? 'bg-slate-900/5 text-slate-900'
+										: 'text-slate-800 hover:bg-slate-50'
+								}`}
+							>
+								<Icon icon={`heroicons:${link.icon}`} class="h-5 w-5 text-slate-400" />
+								<span>{link.label}</span>
+								<Icon
+									icon="heroicons:chevron-right-20-solid"
+									class="ml-auto h-5 w-5 text-slate-400"
+								/>
+							</a>
+						{/if}
 					{/each}
 				</div>
 

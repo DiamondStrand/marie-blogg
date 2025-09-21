@@ -70,7 +70,7 @@
 	}
 </script>
 
-<section class="mx-auto max-w-7xl py-12">
+<section class="mx-auto max-w-7xl px-6 py-12 lg:px-0">
 	{#if showHeading}
 		<header class="mb-6 translate-y-3">
 			<h2

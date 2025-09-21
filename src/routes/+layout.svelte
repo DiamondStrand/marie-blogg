@@ -68,6 +68,9 @@
 	/>
 	<!-- Default locale for Open Graph -->
 	<meta property="og:locale" content="sv_SE" />
+	{#if $page.data?.gscVerification}
+		<meta name="google-site-verification" content={$page.data.gscVerification} />
+	{/if}
 </svelte:head>
 
 <div class="app-root flex min-h-screen flex-col bg-white text-gray-900">

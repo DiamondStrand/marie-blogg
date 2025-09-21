@@ -37,6 +37,7 @@ export const load: LayoutServerLoad = async () => {
 			posthogKey: publicKey,
 			posthogHost: env.POSTHOG_HOST || null,
 			clarityProjectId: env.CLARITY_PROJECT_ID || null
-		}
+		},
+		gscVerification: env.GOOGLE_SITE_VERIFICATION || null
 	} as const;
 };

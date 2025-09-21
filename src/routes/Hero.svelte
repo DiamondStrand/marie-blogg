@@ -7,7 +7,7 @@
 	}
 </script>
 
-<section class="mx-auto max-w-6xl px-6 py-40 text-center">
+<section class="mx-auto max-w-6xl px-6 pt-36 pb-24 text-center md:py-40">
 	<p class="mb-4 text-xs tracking-widest text-gray-500 uppercase">TANKAR SOM VÄXER VARJE DAG</p>
 	<h1 class="mx-auto max-w-3xl font-serif text-4xl leading-tight font-light md:text-6xl">
 		Små Steg <span class="italic">med</span><br />
